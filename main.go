@@ -8,6 +8,7 @@ import (
 	"syscall"
 
 	"github.com/bwmarrin/discordgo"
+	GPTClient "github.com/jeremyosz/gobot-rabbi-gpt/internal/open-ai"
 	"github.com/joho/godotenv"
 )
 
@@ -53,5 +54,14 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if m.Content == "!random" {
 		_, _ = s.ChannelMessageSend(m.ChannelID, "Hello, Random!")
+	}
+
+	if m.Content == "!gpt" {
+		text, err := GPTClient.SendGPTRequest("Hello, world!", 10)
+		if err != nil {
+			log.Fatalf("Error calling sendGPTRequest: %v", err)
+			_, _ = s.ChannelMessageSend(m.ChannelID, text)
+		}
+		_, _ = s.ChannelMessageSend(m.ChannelID, text)
 	}
 }
