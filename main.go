@@ -57,7 +57,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if m.Content == "!gpt" {
-		text, err := GPTClient.SendGPTRequest("Hello, world!", 10)
+		text, err := GPTClient.AskGPT("Hello, GPT!", 50)
 		if err != nil {
 			log.Fatalf("Error calling sendGPTRequest: %v", err)
 			_, _ = s.ChannelMessageSend(m.ChannelID, text)

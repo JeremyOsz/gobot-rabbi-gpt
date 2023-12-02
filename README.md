@@ -24,3 +24,12 @@ Halacha:
 History:
 
 Philosophy:
+
+## Run the app
+1. Clone the repo
+2. Install dependencies
+3. Run the app
+
+```bash
+go run main.go
+```
